@@ -78,6 +78,8 @@ long __stdcall WindowProcess(
 void Gui::CreateHWindow(const char* inWindowName) noexcept
 {
 	Gui::windowName = inWindowName;
+	wchar_t* wString = new wchar_t[strlen(windowName)];
+	MultiByteToWideChar(CP_ACP, 0, windowName, -1, wString, 4096);
 
 	windowClass.cbSize = sizeof(WNDCLASSEX);
 	windowClass.style = CS_CLASSDC;
@@ -89,29 +91,29 @@ void Gui::CreateHWindow(const char* inWindowName) noexcept
 	windowClass.hCursor = 0;
 	windowClass.hbrBackground = 0;
 	windowClass.lpszMenuName = 0;
-	windowClass.lpszClassName = L"class001";
+	windowClass.lpszClassName = wString;
 	windowClass.hIconSm = 0;
 
 	RegisterClassEx(&windowClass);
-
-	wchar_t* wString = new wchar_t[strlen(windowName)];
-	MultiByteToWideChar(CP_ACP, 0, windowName, -1, wString, 4096);
+	
 	window = CreateWindowEx(
-		0,
-		L"class001",
+		WS_EX_LAYERED,
 		wString,
-		WS_POPUP,
+		wString,
+		WS_POPUP | WS_VISIBLE,
 		100,
 		100,
 		WIDTH,
 		HEIGHT,
-		0,
-		0,
+		nullptr,
+		nullptr,
 		windowClass.hInstance,
-		0
+		nullptr
 	);
+	SetLayeredWindowAttributes(window, 0, 0, LWA_ALPHA);
+	SetLayeredWindowAttributes(window, 0, RGB(0, 0, 0), LWA_COLORKEY);
 
-	ShowWindow(window, SW_SHOWDEFAULT);
+	ShowWindow(window, SW_SHOWNORMAL);
 	UpdateWindow(window);
 }
 
@@ -226,8 +228,8 @@ void Gui::EndRender() noexcept
 	device->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
 	device->SetRenderState(D3DRS_SCISSORTESTENABLE, FALSE);
 
-	device->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_RGBA(0, 0, 0, 255), 1.0f, 0);
-
+	device->Clear(0, 0, D3DCLEAR_TARGET, 0, 1.0f, 0);
+	
 	if (device->BeginScene() >= 0)
 	{
 		ImGui::Render();
