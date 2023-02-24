@@ -89,15 +89,17 @@ void gui::CreateHWindow(const char* inWindowName) noexcept
 	windowClass.hCursor = 0;
 	windowClass.hbrBackground = 0;
 	windowClass.lpszMenuName = 0;
-	windowClass.lpszClassName = LPCWSTR("class001");
+	windowClass.lpszClassName = L"class001";
 	windowClass.hIconSm = 0;
 
 	RegisterClassEx(&windowClass);
 
+	wchar_t* wString = new wchar_t[strlen(windowName)];
+	MultiByteToWideChar(CP_ACP, 0, windowName, -1, wString, 4096);
 	window = CreateWindowEx(
 		0,
-		LPCWSTR("class001"),
-		LPCWSTR(windowName),
+		L"class001",
+		wString,
 		WS_POPUP,
 		100,
 		100,
