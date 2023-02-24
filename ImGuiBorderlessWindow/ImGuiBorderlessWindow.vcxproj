@@ -143,7 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="gui.cpp" />
+    <ClCompile Include="Gui.cpp" />
     <ClCompile Include="imGui\backends\imgui_impl_dx9.cpp" />
     <ClCompile Include="imGui\backends\imgui_impl_win32.cpp" />
     <ClCompile Include="imGui\imgui.cpp" />
@@ -154,7 +154,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gui.h" />
+    <ClInclude Include="Gui.h" />
     <ClInclude Include="imGui\backends\imgui_impl_dx9.h" />
     <ClInclude Include="imGui\backends\imgui_impl_win32.h" />
     <ClInclude Include="imGui\imconfig.h" />
@@ -163,6 +163,7 @@
     <ClInclude Include="imGui\imstb_rectpack.h" />
     <ClInclude Include="imGui\imstb_textedit.h" />
     <ClInclude Include="imGui\imstb_truetype.h" />
+    <ClInclude Include="Themes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

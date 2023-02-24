@@ -3,11 +3,13 @@
 #include <string>
 #include <thread>
 
-#include "gui.h"
-#include "imgui.h"
-
 #include <Windows.h>
 #include <shellapi.h>
+
+#include "imgui.h"
+
+#include "Gui.h"
+#include "Themes.h"
 
 int __stdcall wWinMain(
     HINSTANCE instance,
@@ -16,14 +18,18 @@ int __stdcall wWinMain(
     int commandShow)
 {
     // Create gui
-    gui::CreateHWindow("ImGuiBorderlessWindow by AvnishGameDev");
-    gui::CreateDevice();
-    gui::CreateImGui();
+    Gui::CreateHWindow("ImGuiBorderlessWindow by AvnishGameDev");
+    Gui::CreateDevice();
+    Gui::CreateImGui();
 
-    while (gui::isRunning)
+    // Activating Theme
+    Themes::DefaultDark();
+
+    // Main Loop
+    while (Gui::isRunning)
     {
-        gui::BeginRender();
-        gui::BeginImGuiRender();
+        Gui::BeginRender();
+        Gui::BeginImGuiRender();
 
         // Render ImGui elements
         if (ImGui::Button("Visit my site"))
@@ -31,16 +37,16 @@ int __stdcall wWinMain(
             ShellExecute(0, 0, L"https://avnishgamedev.com", 0, 0, SW_SHOW);
         }
 
-        gui::EndImGuiRender();
-        gui::EndRender();
+        Gui::EndImGuiRender();
+        Gui::EndRender();
 
         std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
 
     // Destroy gui
-    gui::DestroyImGui();
-    gui::DestroyDevice();
-    gui::DestroyHWindow();
+    Gui::DestroyImGui();
+    Gui::DestroyDevice();
+    Gui::DestroyHWindow();
 
     return EXIT_SUCCESS;
 }

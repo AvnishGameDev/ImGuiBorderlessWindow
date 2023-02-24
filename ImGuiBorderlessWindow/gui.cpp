@@ -23,11 +23,11 @@ long __stdcall WindowProcess(
 	switch (message)
 	{
 	case WM_SIZE: {
-		if (gui::device && wideParameter != SIZE_MINIMIZED)
+		if (Gui::device && wideParameter != SIZE_MINIMIZED)
 		{
-			gui::presentParameters.BackBufferWidth = LOWORD(longParameter);
-			gui::presentParameters.BackBufferHeight = HIWORD(longParameter);
-			gui::ResetDevice();
+			Gui::presentParameters.BackBufferWidth = LOWORD(longParameter);
+			Gui::presentParameters.BackBufferHeight = HIWORD(longParameter);
+			Gui::ResetDevice();
 		}
 	}return 0;
 
@@ -41,7 +41,7 @@ long __stdcall WindowProcess(
 	}return 0;
 
 	case WM_LBUTTONDOWN: {
-		gui::position = MAKEPOINTS(longParameter); // set click points
+		Gui::position = MAKEPOINTS(longParameter); // set click points
 	}return 0;
 
 	case WM_MOUSEMOVE: {
@@ -50,16 +50,16 @@ long __stdcall WindowProcess(
 			const auto points = MAKEPOINTS(longParameter);
 			auto rect = ::RECT{ };
 
-			GetWindowRect(gui::window, &rect);
+			GetWindowRect(Gui::window, &rect);
 
-			rect.left += points.x - gui::position.x;
-			rect.top += points.y - gui::position.y;
+			rect.left += points.x - Gui::position.x;
+			rect.top += points.y - Gui::position.y;
 
-			if (gui::position.x >= 0 &&
-				gui::position.x <= gui::WIDTH &&
-				gui::position.y >= 0 && gui::position.y <= 19)
+			if (Gui::position.x >= 0 &&
+				Gui::position.x <= Gui::WIDTH &&
+				Gui::position.y >= 0 && Gui::position.y <= 19)
 				SetWindowPos(
-					gui::window,
+					Gui::window,
 					HWND_TOPMOST,
 					rect.left,
 					rect.top,
@@ -75,9 +75,9 @@ long __stdcall WindowProcess(
 	return long(DefWindowProc(window, message, wideParameter, longParameter));
 }
 
-void gui::CreateHWindow(const char* inWindowName) noexcept
+void Gui::CreateHWindow(const char* inWindowName) noexcept
 {
-	gui::windowName = inWindowName;
+	Gui::windowName = inWindowName;
 
 	windowClass.cbSize = sizeof(WNDCLASSEX);
 	windowClass.style = CS_CLASSDC;
@@ -115,13 +115,13 @@ void gui::CreateHWindow(const char* inWindowName) noexcept
 	UpdateWindow(window);
 }
 
-void gui::DestroyHWindow() noexcept
+void Gui::DestroyHWindow() noexcept
 {
 	DestroyWindow(window);
 	UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
 }
 
-bool gui::CreateDevice() noexcept
+bool Gui::CreateDevice() noexcept
 {
 	d3d = Direct3DCreate9(D3D_SDK_VERSION);
 
@@ -149,7 +149,7 @@ bool gui::CreateDevice() noexcept
 	return true;
 }
 
-void gui::ResetDevice() noexcept
+void Gui::ResetDevice() noexcept
 {
 	ImGui_ImplDX9_InvalidateDeviceObjects();
 
@@ -161,7 +161,7 @@ void gui::ResetDevice() noexcept
 	ImGui_ImplDX9_CreateDeviceObjects();
 }
 
-void gui::DestroyDevice() noexcept
+void Gui::DestroyDevice() noexcept
 {
 	if (device)
 	{
@@ -176,7 +176,7 @@ void gui::DestroyDevice() noexcept
 	}
 }
 
-void gui::CreateImGui() noexcept
+void Gui::CreateImGui() noexcept
 {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -190,14 +190,14 @@ void gui::CreateImGui() noexcept
 	ImGui_ImplDX9_Init(device);
 }
 
-void gui::DestroyImGui() noexcept
+void Gui::DestroyImGui() noexcept
 {
 	ImGui_ImplDX9_Shutdown();
 	ImGui_ImplWin32_Shutdown();
 	ImGui::DestroyContext();
 }
 
-void gui::BeginRender() noexcept
+void Gui::BeginRender() noexcept
 {
 	MSG message;
 	while (PeekMessage(&message, 0, 0, 0, PM_REMOVE))
@@ -218,7 +218,7 @@ void gui::BeginRender() noexcept
 	ImGui::NewFrame();
 }
 
-void gui::EndRender() noexcept
+void Gui::EndRender() noexcept
 {
 	ImGui::EndFrame();
 
@@ -242,12 +242,12 @@ void gui::EndRender() noexcept
 		ResetDevice();
 }
 
-void gui::BeginImGuiRender() noexcept
+void Gui::BeginImGuiRender() noexcept
 {
 	ImGui::SetNextWindowPos({ 0, 0 });
 	ImGui::SetNextWindowSize({ WIDTH, HEIGHT });
 	ImGui::Begin(
-		gui::windowName,
+		Gui::windowName,
 		&isRunning,
 		ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoSavedSettings |
@@ -256,7 +256,7 @@ void gui::BeginImGuiRender() noexcept
 	);
 }
 
-void gui::EndImGuiRender() noexcept
+void Gui::EndImGuiRender() noexcept
 {
 	ImGui::End();
 }
