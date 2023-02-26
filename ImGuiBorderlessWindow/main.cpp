@@ -18,7 +18,7 @@ int __stdcall wWinMain(
     int commandShow)
 {
     // Create gui
-    Gui::CreateHWindow("ImGuiBorderlessWindow by AvnishGameDev");
+    Gui::CreateHWindow("ImGuiBorderlessWindow by AvnishGameDev", 400, 140);
     Gui::CreateDevice();
     Gui::CreateImGui();
 

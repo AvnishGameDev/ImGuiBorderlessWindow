@@ -4,8 +4,8 @@
 namespace Gui
 {
     // Constant window size
-    constexpr int WIDTH = 400;
-    constexpr int HEIGHT = 140;
+    inline int WIDTH = 800;
+    inline int HEIGHT = 600;
 
     // When this changes, exit threads
     // and closes app :)
@@ -26,7 +26,7 @@ namespace Gui
     inline const char* windowName;
 
     // Handle window creation & destruction
-    void CreateHWindow(const char* inWindowName) noexcept;
+    void CreateHWindow(const char* inWindowName, int inWidth = 800, int inHeight = 600) noexcept;
     void DestroyHWindow() noexcept;
 
     // Handle device creation & destruction

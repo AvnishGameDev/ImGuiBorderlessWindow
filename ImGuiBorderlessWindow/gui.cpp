@@ -75,8 +75,11 @@ long __stdcall WindowProcess(
 	return long(DefWindowProc(window, message, wideParameter, longParameter));
 }
 
-void Gui::CreateHWindow(const char* inWindowName) noexcept
+void Gui::CreateHWindow(const char* inWindowName, int inWidth, int inHeight) noexcept
 {
+	WIDTH = inWidth;
+	HEIGHT = inHeight;
+
 	Gui::windowName = inWindowName;
 	wchar_t* wString = new wchar_t[strlen(windowName)];
 	MultiByteToWideChar(CP_ACP, 0, windowName, -1, wString, 4096);
@@ -247,7 +250,7 @@ void Gui::EndRender() noexcept
 void Gui::BeginImGuiRender() noexcept
 {
 	ImGui::SetNextWindowPos({ 0, 0 });
-	ImGui::SetNextWindowSize({ WIDTH, HEIGHT });
+	ImGui::SetNextWindowSize(ImVec2(static_cast<float>(WIDTH), static_cast<float>(HEIGHT)));
 	ImGui::Begin(
 		Gui::windowName,
 		&isRunning,
