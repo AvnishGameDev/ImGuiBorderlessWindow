@@ -31,4 +31,8 @@
 *.out
 *.app
 
-.vs/*
+.vs
+x86
+x64
+ImGuiBorderlessWindow/x86
+ImGuiBorderlessWindow/x64
