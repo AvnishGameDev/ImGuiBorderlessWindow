@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include <shellapi.h>
 
+#include "App.h"
 #include "imgui.h"
 
 #include "Gui.h"
@@ -25,17 +26,18 @@ int __stdcall wWinMain(
     // Activating Theme
     Themes::DefaultDark();
 
+    auto app = App::Create();
+    
     // Main Loop
     while (Gui::isRunning)
     {
+        app->Update();
+        
         Gui::BeginRender();
         Gui::BeginImGuiRender();
 
         // Render ImGui elements
-        if (ImGui::Button("Visit my site"))
-        {
-            ShellExecute(0, 0, L"https://avnishgamedev.com", 0, 0, SW_SHOW);
-        }
+        app->Render();
 
         Gui::EndImGuiRender();
         Gui::EndRender();

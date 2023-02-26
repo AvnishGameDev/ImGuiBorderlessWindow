@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="App.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="imGui\backends\imgui_impl_dx9.cpp" />
     <ClCompile Include="imGui\backends\imgui_impl_win32.cpp" />
@@ -154,7 +155,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="App.h" />
     <ClInclude Include="Gui.h" />
+    <ClInclude Include="GuiHelper.h" />
     <ClInclude Include="imGui\backends\imgui_impl_dx9.h" />
     <ClInclude Include="imGui\backends\imgui_impl_win32.h" />
     <ClInclude Include="imGui\imconfig.h" />
