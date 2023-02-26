@@ -32,6 +32,7 @@
 *.app
 
 .vs
+.idea
 x86
 x64
 ImGuiBorderlessWindow/x86
