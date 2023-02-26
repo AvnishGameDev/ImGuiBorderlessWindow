@@ -23,9 +23,6 @@ int __stdcall wWinMain(
     Gui::CreateDevice();
     Gui::CreateImGui();
 
-    // Activating Theme
-    Themes::DefaultDark();
-
     auto app = App::Create();
     
     // Main Loop
