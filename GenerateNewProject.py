@@ -9,6 +9,7 @@ print("Generating project")
 os.mkdir(f"../{projName}")
 
 shutil.copytree("ImGuiBorderlessWindow/ImGui", f"../{projName}/ImGuiBorderlessWindow/ImGui")
+shutil.copytree("ImGuiBorderlessWindow/MainApp", f"../{projName}/ImGuiBorderlessWindow/MainApp")
 shutil.copyfile("ImGuiBorderlessWindow/ImGuiBorderlessWindow.vcxproj", f"../{projName}/ImGuiBorderlessWindow/ImGuiBorderlessWindow.vcxproj")
 
 for basename in os.listdir(f"../ImGuiBorderlessWindow/ImGuiBorderlessWindow"):
