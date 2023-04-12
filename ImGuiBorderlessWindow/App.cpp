@@ -10,7 +10,7 @@ using namespace std;
 App::App(std::string _appName, int _width, int _height) : appName(std::move(_appName)), windowWidth(_width), windowHeight(_height)
 {
     // Create gui
-    Gui::CreateHWindow(appName.c_str(), 400, 140);
+    Gui::CreateHWindow(appName.c_str(), windowWidth, windowHeight);
     Gui::CreateDevice();
     Gui::CreateImGui();
     
