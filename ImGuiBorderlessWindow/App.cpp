@@ -1,26 +1,45 @@
 #include "App.h"
 
+#include <thread>
+
 #include "Gui.h"
 #include "Themes.h"
 
 using namespace std;
 
-App::App()
+App::App(std::string _appName, int _width, int _height) : appName(std::move(_appName)), windowWidth(_width), windowHeight(_height)
 {
+    // Create gui
+    Gui::CreateHWindow(appName.c_str(), 400, 140);
+    Gui::CreateDevice();
+    Gui::CreateImGui();
+    
     Themes::DefaultDark();
+}
+
+App::~App()
+{
+    // Destroy gui
+    Gui::DestroyImGui();
+    Gui::DestroyDevice();
+    Gui::DestroyHWindow();
 }
 
 void App::Update()
 {
-    
+    std::this_thread::sleep_for(std::chrono::milliseconds(5));
 }
 
-void App::Render()
+void App::BeginRender()
 {
-    if (ImGui::Button("Visit my site"))
-    {
-        ShellExecute(0, 0, L"https://avnishgamedev.com", 0, 0, SW_SHOW);
-    }
+    Gui::BeginRender();
+    Gui::BeginImGuiRender();
+}
+
+void App::EndRender()
+{
+    Gui::EndImGuiRender();
+    Gui::EndRender();
 }
 
 

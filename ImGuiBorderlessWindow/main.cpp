@@ -1,16 +1,9 @@
 #include <iostream>
-#include <chrono>
-#include <string>
 #include <thread>
-
 #include <Windows.h>
-#include <shellapi.h>
-
-#include "App.h"
-#include "imgui.h"
 
 #include "Gui.h"
-#include "Themes.h"
+#include "MainApp/MainApp.h"
 
 int __stdcall wWinMain(
     HINSTANCE instance,
@@ -18,34 +11,19 @@ int __stdcall wWinMain(
     PWSTR arguments,
     int commandShow)
 {
-    // Create gui
-    Gui::CreateHWindow("ImGuiBorderlessWindow by AvnishGameDev", 400, 140);
-    Gui::CreateDevice();
-    Gui::CreateImGui();
-
-    auto app = App::Create();
+    auto app = App::Create<MainApp>();
     
     // Main Loop
     while (Gui::isRunning)
     {
         app->Update();
         
-        Gui::BeginRender();
-        Gui::BeginImGuiRender();
-
-        // Render ImGui elements
+        /* Rendering */
+        app->BeginRender();
         app->Render();
-
-        Gui::EndImGuiRender();
-        Gui::EndRender();
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        app->EndRender();
     }
 
-    // Destroy gui
-    Gui::DestroyImGui();
-    Gui::DestroyDevice();
-    Gui::DestroyHWindow();
-
+    delete app;
     return EXIT_SUCCESS;
 }
