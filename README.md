@@ -1,14 +1,32 @@
 # ImGuiBorderlessWindow
- ImGui Borderless Window made by AvnishGameDev. Made using DirectX and Windows API
+ ImGui Borderless Window made by AvnishGameDev. Uses DirectX, Windows API and ImGui. This project currently only supports Windows.
  
  # Steps to setup
- 1. Set C++ version to C++17 or above
- 2. Make sure Subsystem is set to Windows by going to project properties -> Linker -> System
+ 1. Clone the project with the following command
+    ```git clone https://github.com/AvnishGameDev/ImGuiBorderlessWindow.git```
+ 2. In the cloned folder, Run GenerateNewProject.bat
+
+      ![image](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/assets/64523755/6f02c32c-2606-4778-8a4c-950893d2763a)
+ 3. Enter your project name (Don't leave any spaces in the name)
+
+      ![image](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/assets/64523755/bc1b532a-7c4f-42bf-bb38-a1b580e8c396)
+ 4. You should see this output, if not, make sure you have Python and shutil module installed.
+    
+      ![image](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/assets/64523755/fb346fde-ec15-4a33-a5f6-b6e6ad15c06c)
+ 5. You will find YourProject.sln in the newly generated project folder as displayed in above output.
+
+# Troubleshooting
+ 1. If the project fails to compile, make sure to set C++ standard to C++17 or above in the project properties as shown below.
+
+    ![image](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/assets/64523755/43d4c693-56de-4bf9-bf5d-4764b0787824)
+ 2. Make sure Subsystem is set to Windows by going to Project Properties -> Linker -> System
+
+    ![image](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/assets/64523755/0e873ff9-11b5-4f8f-b0b6-645ed05ac385)
 
 # How to use Themes
 Themes are available in Themes.h, in order to activate a theme, just include Themes.h and call Theme::AnyThemeOfYourChoice() to activate that theme.
 
-# Themes
+# Available Themes
 ## 1. Default Dark
 ![image](https://user-images.githubusercontent.com/64523755/221153006-6c23f76f-3a4e-4df6-a091-2571da27e092.png)
 
