@@ -3,7 +3,8 @@
  
  # Steps to setup
  1. Clone the project with the following command
-    ```git clone https://github.com/AvnishGameDev/ImGuiBorderlessWindow.git```
+    
+     ```git clone https://github.com/AvnishGameDev/ImGuiBorderlessWindow.git```
  2. In the cloned folder, Run GenerateNewProject.bat
 
       ![image](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/assets/64523755/6f02c32c-2606-4778-8a4c-950893d2763a)
