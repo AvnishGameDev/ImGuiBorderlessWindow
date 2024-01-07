@@ -114,7 +114,8 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>ImGui</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -143,34 +144,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="App.cpp" />
-    <ClCompile Include="Gui.cpp" />
-    <ClCompile Include="imGui\backends\imgui_impl_dx9.cpp" />
-    <ClCompile Include="imGui\backends\imgui_impl_win32.cpp" />
-    <ClCompile Include="imGui\imgui.cpp" />
-    <ClCompile Include="imGui\imgui_demo.cpp" />
-    <ClCompile Include="imGui\imgui_draw.cpp" />
-    <ClCompile Include="ImGui\imgui_stdlib.cpp" />
-    <ClCompile Include="imGui\imgui_tables.cpp" />
-    <ClCompile Include="imGui\imgui_widgets.cpp" />
+    <ClCompile Include="Gui\App\App.cpp" />
+    <ClCompile Include="Gui\Gui.cpp" />
+    <ClCompile Include="Gui\ThirdParty\imGui\backends\imgui_impl_dx9.cpp" />
+    <ClCompile Include="Gui\ThirdParty\imGui\backends\imgui_impl_win32.cpp" />
+    <ClCompile Include="Gui\ThirdParty\imGui\imgui.cpp" />
+    <ClCompile Include="Gui\ThirdParty\imGui\imgui_demo.cpp" />
+    <ClCompile Include="Gui\ThirdParty\imGui\imgui_draw.cpp" />
+    <ClCompile Include="Gui\ThirdParty\imGui\imgui_stdlib.cpp" />
+    <ClCompile Include="Gui\ThirdParty\imGui\imgui_tables.cpp" />
+    <ClCompile Include="Gui\ThirdParty\imGui\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MainApp\MainApp.cpp" />
+    <ClCompile Include="MainApp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="App.h" />
-    <ClInclude Include="Gui.h" />
-    <ClInclude Include="GuiHelper.h" />
-    <ClInclude Include="imGui\backends\imgui_impl_dx9.h" />
-    <ClInclude Include="imGui\backends\imgui_impl_win32.h" />
-    <ClInclude Include="imGui\imconfig.h" />
-    <ClInclude Include="imGui\imgui.h" />
-    <ClInclude Include="imGui\imgui_internal.h" />
-    <ClInclude Include="ImGui\imgui_stdlib.h" />
-    <ClInclude Include="imGui\imstb_rectpack.h" />
-    <ClInclude Include="imGui\imstb_textedit.h" />
-    <ClInclude Include="imGui\imstb_truetype.h" />
-    <ClInclude Include="MainApp\MainApp.h" />
-    <ClInclude Include="Themes.h" />
+    <ClInclude Include="Gui\App\App.h" />
+    <ClInclude Include="Gui\Gui.h" />
+    <ClInclude Include="Gui\GuiHelper.h" />
+    <ClInclude Include="Gui\ThirdParty\imGui\backends\imgui_impl_dx9.h" />
+    <ClInclude Include="Gui\ThirdParty\imGui\backends\imgui_impl_win32.h" />
+    <ClInclude Include="Gui\ThirdParty\imGui\imconfig.h" />
+    <ClInclude Include="Gui\ThirdParty\imGui\imgui.h" />
+    <ClInclude Include="Gui\ThirdParty\imGui\imgui_internal.h" />
+    <ClInclude Include="Gui\ThirdParty\imGui\imgui_stdlib.h" />
+    <ClInclude Include="Gui\ThirdParty\imGui\imstb_rectpack.h" />
+    <ClInclude Include="Gui\ThirdParty\imGui\imstb_textedit.h" />
+    <ClInclude Include="Gui\ThirdParty\imGui\imstb_truetype.h" />
+    <ClInclude Include="MainApp.h" />
+    <ClInclude Include="Gui\Themes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

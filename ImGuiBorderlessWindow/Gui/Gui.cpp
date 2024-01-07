@@ -1,8 +1,10 @@
+// Copyright (C) 2023 Avnish Kirnalli.
+
 #include "gui.h"
 
-#include "imgui.h"
-#include "backends/imgui_impl_dx9.h"
-#include "backends/imgui_impl_win32.h"
+#include "ThirdParty/imGui/imgui.h"
+#include "ThirdParty/imGui/backends/imgui_impl_dx9.h"
+#include "ThirdParty/imGui/backends/imgui_impl_win32.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(
 	HWND window,

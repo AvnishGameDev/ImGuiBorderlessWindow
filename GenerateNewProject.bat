@@ -1,8 +1,8 @@
-:: Copyright Avnish Kirnalli 2022.
+:: Copyright (C) Avnish Kirnalli 2023.
 
 @echo off
 
-@echo off & title Setup DrEngine
+@echo off & title Generate New Project
 
 goto :DOES_PYTHON_EXIST
 

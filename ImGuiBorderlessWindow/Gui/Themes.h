@@ -1,8 +1,10 @@
+// Copyright (C) 2023 Avnish Kirnalli.
+
 #pragma once
 
-#include "imgui.h"
+#include "ThirdParty/imGui/imgui.h"
 
-namespace Themes
+namespace Theme
 {
 	static void DefaultDark()
 	{

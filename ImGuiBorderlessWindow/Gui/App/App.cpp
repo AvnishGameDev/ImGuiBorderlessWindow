@@ -1,9 +1,11 @@
+// Copyright (C) 2023 Avnish Kirnalli.
+
 #include "App.h"
 
 #include <thread>
 
-#include "Gui.h"
-#include "Themes.h"
+#include "../Gui.h"
+#include "../Themes.h"
 
 using namespace std;
 
@@ -14,7 +16,7 @@ App::App(std::string _appName, int _width, int _height) : appName(std::move(_app
     Gui::CreateDevice();
     Gui::CreateImGui();
     
-    Themes::DefaultDark();
+    Theme::DefaultDark();
 }
 
 App::~App()

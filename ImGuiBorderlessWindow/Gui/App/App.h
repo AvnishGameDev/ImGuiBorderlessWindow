@@ -1,3 +1,5 @@
+// Copyright (C) 2023 Avnish Kirnalli.
+
 #pragma once
 #include <string>
 

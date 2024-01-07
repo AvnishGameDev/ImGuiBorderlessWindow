@@ -18,60 +18,81 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gui.cpp">
+    <ClCompile Include="Gui\Gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="imGui\imgui.cpp">
+    <ClCompile Include="Gui\ThirdParty\imGui\imgui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="imGui\imgui_demo.cpp">
+    <ClCompile Include="Gui\ThirdParty\imGui\imgui_demo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="imGui\imgui_draw.cpp">
+    <ClCompile Include="Gui\ThirdParty\imGui\imgui_draw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="imGui\imgui_tables.cpp">
+    <ClCompile Include="Gui\ThirdParty\imGui\imgui_tables.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="imGui\imgui_widgets.cpp">
+    <ClCompile Include="Gui\ThirdParty\imGui\imgui_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="imGui\backends\imgui_impl_dx9.cpp">
+    <ClCompile Include="Gui\ThirdParty\imGui\backends\imgui_impl_dx9.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="imGui\backends\imgui_impl_win32.cpp">
+    <ClCompile Include="Gui\ThirdParty\imGui\backends\imgui_impl_win32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\App\App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\ThirdParty\imGui\imgui_stdlib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gui.h">
+    <ClInclude Include="Gui\Gui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="imGui\imconfig.h">
+    <ClInclude Include="Gui\ThirdParty\imGui\imconfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="imGui\imgui.h">
+    <ClInclude Include="Gui\ThirdParty\imGui\imgui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="imGui\imgui_internal.h">
+    <ClInclude Include="Gui\ThirdParty\imGui\imgui_internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="imGui\imstb_rectpack.h">
+    <ClInclude Include="Gui\ThirdParty\imGui\imstb_rectpack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="imGui\imstb_textedit.h">
+    <ClInclude Include="Gui\ThirdParty\imGui\imstb_textedit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="imGui\imstb_truetype.h">
+    <ClInclude Include="Gui\ThirdParty\imGui\imstb_truetype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="imGui\backends\imgui_impl_dx9.h">
+    <ClInclude Include="Gui\ThirdParty\imGui\backends\imgui_impl_dx9.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="imGui\backends\imgui_impl_win32.h">
+    <ClInclude Include="Gui\ThirdParty\imGui\backends\imgui_impl_win32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="themes.h">
+    <ClInclude Include="Gui\Themes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\App\App.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\GuiHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\ThirdParty\imGui\imgui_stdlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

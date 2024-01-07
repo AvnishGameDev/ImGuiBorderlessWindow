@@ -1,31 +1,32 @@
+# Copyright (C) Avnish Kirnalli 2023.
+
 import os
 import shutil
 
-print("Written by AvnishGameDev for ImGuiBorderlessWindow. https://github.com/avnishgamedev/ImGuiBorderlessWindow")
+print("Copyright (C) Avnish Kirnalli 2023.")
 
 projName = input("Enter project name: ")
 print("Generating project")
 
 os.mkdir(f"../{projName}")
 
-shutil.copytree("ImGuiBorderlessWindow/ImGui", f"../{projName}/ImGuiBorderlessWindow/ImGui")
-shutil.copytree("ImGuiBorderlessWindow/MainApp", f"../{projName}/ImGuiBorderlessWindow/MainApp")
-shutil.copyfile("ImGuiBorderlessWindow/ImGuiBorderlessWindow.vcxproj", f"../{projName}/ImGuiBorderlessWindow/ImGuiBorderlessWindow.vcxproj")
+shutil.copytree("ImGuiBorderlessWindow/Gui", f"../{projName}/ImGuiBorderlessWindow/Gui")
+shutil.copyfile("ImGuiBorderlessWindow/ImGuiBorderlessWindow.vcxproj", f"../{projName}/ImGuiBorderlessWindow/ImGuiBorderlessWindow.vcxproj") # Is renamed later on.
 
-for basename in os.listdir(f"../ImGuiBorderlessWindow/ImGuiBorderlessWindow"):
+for basename in os.listdir(f"{os.getcwd()}/ImGuiBorderlessWindow"):
     if basename.endswith('.h'):
-        pathname = os.path.join("../ImGuiBorderlessWindow/ImGuiBorderlessWindow", basename)
+        pathname = os.path.join(f"{os.getcwd()}/ImGuiBorderlessWindow", basename)
         if os.path.isfile(pathname):
             shutil.copy2(pathname, f"../{projName}/ImGuiBorderlessWindow/{basename}")
 
-for basename in os.listdir(f"../ImGuiBorderlessWindow/ImGuiBorderlessWindow"):
+for basename in os.listdir(f"{os.getcwd()}/ImGuiBorderlessWindow"):
     if basename.endswith('.cpp'):
-        pathname = os.path.join("../ImGuiBorderlessWindow/ImGuiBorderlessWindow", basename)
+        pathname = os.path.join(f"{os.getcwd()}/ImGuiBorderlessWindow", basename)
         if os.path.isfile(pathname):
             shutil.copy2(pathname, f"../{projName}/ImGuiBorderlessWindow/{basename}")
 
 shutil.copyfile("ImGuiBorderlessWindow.sln", f"../{projName}/ImGuiBorderlessWindow.sln")
-shutil.copyfile("LICENSE", f"../{projName}/LICENSE")
+shutil.copyfile("LICENSE", f"../{projName}/ImGuiBorderlessWindow/Gui/LICENSE.txt")
 
 os.chdir(f"../{projName}")
 
