@@ -159,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gui\App\App.h" />
+    <ClInclude Include="Gui\Font.h" />
     <ClInclude Include="Gui\Gui.h" />
     <ClInclude Include="Gui\GuiHelper.h" />
     <ClInclude Include="Gui\ThirdParty\imGui\backends\imgui_impl_dx9.h" />

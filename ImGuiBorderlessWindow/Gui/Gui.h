@@ -3,6 +3,8 @@
 #pragma once
 #include <d3d9.h>
 
+struct Font;
+
 namespace Gui
 {
     // Constant window size
@@ -45,4 +47,8 @@ namespace Gui
     void EndRender() noexcept;
     void BeginImGuiRender() noexcept;
     void EndImGuiRender() noexcept;
+
+    // Loading Fonts
+    void PushFont(const Font& inFont) noexcept;
+    void PopFont();
 }

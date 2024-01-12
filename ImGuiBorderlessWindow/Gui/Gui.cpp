@@ -1,5 +1,6 @@
 // Copyright (C) 2023 Avnish Kirnalli.
 
+#include "Font.h"
 #include "gui.h"
 
 #include "ThirdParty/imGui/imgui.h"
@@ -266,4 +267,15 @@ void Gui::BeginImGuiRender() noexcept
 void Gui::EndImGuiRender() noexcept
 {
 	ImGui::End();
+}
+
+void Gui::PushFont(const Font& inFont) noexcept
+{
+	if (inFont.GetImGuiFont()->IsLoaded())
+		ImGui::PushFont(inFont.GetImGuiFont());
+}
+
+void Gui::PopFont()
+{
+	ImGui::PopFont();
 }
