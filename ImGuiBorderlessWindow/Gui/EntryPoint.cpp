@@ -4,8 +4,8 @@
 #include <thread>
 #include <Windows.h>
 
-#include "Gui/Gui.h"
-#include "MainApp.h"
+#include "Gui.h"
+#include "../MainApp.h"
 
 int __stdcall wWinMain(
     HINSTANCE instance,
