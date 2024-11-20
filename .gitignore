@@ -33,7 +33,7 @@
 
 .vs
 .idea
-x86
-x64
-ImGuiBorderlessWindow/x86
-ImGuiBorderlessWindow/x64
+bin
+obj
+premake
+ImGuiBorderlessWindow/Gui/ThirdParty
