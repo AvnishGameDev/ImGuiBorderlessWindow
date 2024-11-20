@@ -5,6 +5,8 @@ project "ImGuiBorderlessWindow"
    kind "WindowedApp"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
+   objdir "bin-int/%{cfg.buildcfg}"
+   debugdir "bin/%{cfg.buildcfg}"
    architecture "x64"
    cppdialect "C++20"
 
@@ -21,6 +23,10 @@ project "ImGuiBorderlessWindow"
    removefiles { "ImGuiBorderlessWindow/Gui/ThirdParty/ImGui/backends/**.cpp" }
 
    links { "d3d9" }
+
+   postbuildcommands {
+      "{COPYDIR} ImGuiBorderlessWindow/Assets %{cfg.targetdir}/Assets"
+   }
 
    filter "configurations:Debug"
       defines { "DEBUG" }
