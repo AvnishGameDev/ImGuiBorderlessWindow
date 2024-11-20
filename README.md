@@ -4,30 +4,22 @@
 [Documentation](https://docs.avnishgamedev.com/documentation/imguiborderlesswindow/)
  
  # Steps to setup
- 1. Clone the project with the following command
+ 1. Clone the project with the following command or download the zip
     
      ```git clone https://github.com/AvnishGameDev/ImGuiBorderlessWindow.git```
  2. In the cloned folder, Run GenerateNewProject.bat
 
       ![image](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/assets/64523755/6f02c32c-2606-4778-8a4c-950893d2763a)
- 3. Enter your project name (Don't leave any spaces in the name)
+ 3. Then the dependencies will be downloaded (Make sure you have an active internet connection)
 
-      ![image](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/assets/64523755/bc1b532a-7c4f-42bf-bb38-a1b580e8c396)
- 4. You should see this output, if not, make sure you have Python and shutil module installed.
+      ![image](https://github.com/user-attachments/assets/bd5eef6d-e0f6-4a9f-b34e-e593f6ae61c1)
+ 4. Then enter the project name when prompted (no spaces allowed)
     
-      ![image](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/assets/64523755/fb346fde-ec15-4a33-a5f6-b6e6ad15c06c)
- 5. You will find YourProject.sln in the newly generated project folder as displayed in above output.
-
-# Troubleshooting
- 1. If the project fails to compile, make sure to set C++ standard to C++17 or above in the project properties as shown below.
-
-    ![image](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/assets/64523755/43d4c693-56de-4bf9-bf5d-4764b0787824)
- 2. Make sure Subsystem is set to Windows by going to Project Properties -> Linker -> System
-
-    ![image](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/assets/64523755/0e873ff9-11b5-4f8f-b0b6-645ed05ac385)
+      ![image](https://github.com/user-attachments/assets/e297c86c-bf95-4855-ab56-bfb1c352f5e1)
+ 5. You can find the generated project solution at the specified location.
 
 # How to use Themes
-Themes are available in Themes.h, in order to activate a theme, just include Themes.h and call Theme::AnyThemeOfYourChoice() to activate that theme.
+Themes are available in Themes.h, in order to activate a theme, just include ```Themes.h``` and call ```Theme::AnyThemeOfYourChoice()``` to activate that theme.
 
 # Available Themes
 ## 1. Default Dark
