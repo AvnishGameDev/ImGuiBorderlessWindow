@@ -2,16 +2,23 @@
 
 #include <iostream>
 #include <thread>
+
+#ifdef PLATFORM_WINDOWS
 #include <Windows.h>
+#endif
 
 #include "Gui.h"
 #include "../MainApp.h"
 
+#ifdef PLATFORM_WINDOWS
 int __stdcall wWinMain(
     HINSTANCE instance,
     HINSTANCE previousInstance,
     PWSTR arguments,
     int commandShow)
+#else
+int main(int argc, char** argv)
+#endif
 {
     auto app = App::Create<MainApp>();
     
@@ -27,5 +34,5 @@ int __stdcall wWinMain(
     }
 
     delete app;
-    return EXIT_SUCCESS;
+    return 0;
 }

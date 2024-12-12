@@ -8,7 +8,7 @@
 #include "Gui/GuiHelper.h"
 #include "Gui/Themes.h"
 
-MainApp::MainApp() : App("ImGuiBorderlessWindow by AvnishGameDev") // <-- Put your App Name here.
+MainApp::MainApp() : App("ImGuiBorderlessWindow by AvnishGameDev", 400, 140) // <-- Put your App Name here.
 {
     // Check All the available themes in Themes.h and apply any as shown below.
     Theme::Comfy();

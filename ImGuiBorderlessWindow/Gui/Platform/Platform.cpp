@@ -1,0 +1,28 @@
+#include "Platform.h"
+
+#ifdef PLATFORM_WINDOWS
+#include "Windows/WindowsPlatform.h"
+#endif
+
+#if _DEBUG
+#include <iostream>
+#endif
+
+Platform* Platform::m_CurrentPlatform = nullptr;
+
+Platform* Platform::Get()
+{
+    if (m_CurrentPlatform)
+        return m_CurrentPlatform;
+
+#ifdef PLATFORM_WINDOWS
+    m_CurrentPlatform = new WindowsPlatform();
+#endif
+
+#if _DEBUG
+    if (!m_CurrentPlatform)
+        std::cerr << "Failed to create Platform!" << std::endl;
+#endif
+
+    return m_CurrentPlatform;
+}

@@ -37,3 +37,7 @@ bin
 bin-int
 premake
 ImGuiBorderlessWindow/Gui/ThirdParty
+*.sln
+*.vcxproj
+*.filters
+*.user

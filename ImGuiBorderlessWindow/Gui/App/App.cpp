@@ -6,14 +6,28 @@
 
 #include "../Gui.h"
 #include "../Themes.h"
+#include "../Platform/Platform.h"
+
+#if _DEBUG
+#include <iostream>
+#endif
 
 using namespace std;
 
-App::App(std::string _appName, int _width, int _height) : appName(std::move(_appName)), windowWidth(_width), windowHeight(_height)
+App::App(std::string _appName, int _width, int _height) : appName(std::move(_appName))
 {
     // Create gui
-    Gui::CreateHWindow(appName.c_str(), windowWidth, windowHeight);
-    Gui::CreateDevice();
+    Gui::WIDTH = _width;
+    Gui::HEIGHT = _height;
+    
+    if (!Platform::Get()->CreatePlatformWindow(appName))
+    {
+#if _DEBUG
+        std::cerr << "Error creating Platform Window From App!" << std::endl;
+#endif
+        return;
+    }
+    
     Gui::CreateImGui();
     
     Theme::DefaultDark();
@@ -21,10 +35,8 @@ App::App(std::string _appName, int _width, int _height) : appName(std::move(_app
 
 App::~App()
 {
-    // Destroy gui
     Gui::DestroyImGui();
-    Gui::DestroyDevice();
-    Gui::DestroyHWindow();
+    Platform::Get()->DestroyPlatformWindow();
 }
 
 void App::Update()
@@ -34,6 +46,7 @@ void App::Update()
 
 void App::BeginRender()
 {
+    Platform::Get()->BeginRender();
     Gui::BeginRender();
     Gui::BeginImGuiRender();
 }
@@ -42,6 +55,7 @@ void App::EndRender()
 {
     Gui::EndImGuiRender();
     Gui::EndRender();
+    Platform::Get()->EndRender();
 }
 
 
