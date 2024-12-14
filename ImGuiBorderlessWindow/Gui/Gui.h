@@ -1,7 +1,6 @@
 // Copyright (C) 2023 Avnish Kirnalli.
 
 #pragma once
-#include <d3d9.h>
 
 struct Font;
 

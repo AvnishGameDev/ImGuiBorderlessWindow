@@ -42,5 +42,6 @@ project "ImGuiBorderlessWindow"
       defines { "PLATFORM_MAC "}
       -- links { "" }
       files { "ImGuiBorderlessWindow/Gui/Platform/Mac/**" }
+      files { "ImGuiBorderlessWindow/Gui/ThirdParty/ImGui/*.m", "ImGuiBorderlessWindow/Gui/ThirdParty/ImGui/*.mm" }
 
    

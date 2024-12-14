@@ -1,7 +1,7 @@
 // Copyright (C) 2023 Avnish Kirnalli.
 
 #include "Font.h"
-#include "gui.h"
+#include "Gui.h"
 
 #include "imgui.h"
 #include "Platform/Platform.h"
@@ -12,6 +12,8 @@ void Gui::CreateImGui() noexcept
 	ImGui::CreateContext();
 	Platform::Get()->InitImguiImpl();
 	ImGuiIO& io = ImGui::GetIO();
+    io.DisplaySize.x = Gui::WIDTH;
+    io.DisplaySize.y = Gui::HEIGHT;
 
 	io.IniFilename = NULL;
 

@@ -19,6 +19,7 @@ App::App(std::string _appName, int _width, int _height) : appName(std::move(_app
     // Create gui
     Gui::WIDTH = _width;
     Gui::HEIGHT = _height;
+    Gui::windowName = appName.c_str();
     
     if (!Platform::Get()->CreatePlatformWindow(appName))
     {

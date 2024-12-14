@@ -14,7 +14,7 @@ MainApp::MainApp() : App("ImGuiBorderlessWindow by AvnishGameDev", 400, 140) // 
     Theme::Comfy();
 
     // Loading Font
-    Gui::PushFont(Font("Assets/DroidSans.ttf", 18.0f));
+    //Gui::PushFont(Font("Assets/DroidSans.ttf", 18.0f));
 }
 
 void MainApp::Render()
@@ -25,6 +25,8 @@ void MainApp::Render()
     
     if (GH::ButtonCentered("Info"))
     {
+#if PLATFORM_WINDOWS
         ShellExecute(0, 0, L"https://github.com/AvnishGameDev/ImGuiBorderlessWindow", 0, 0, SW_SHOW); // Open Website
+#endif
     }
 }

@@ -2,6 +2,15 @@
 
 #include <string>
 
+/** Callstack:
+        1. CreatePlatformWindow()
+        2. InitImguiImpl()
+        3. BeginRender()
+        4. EndRender()
+        5. ShutdownImguiImpl()
+        6. DestroyPlatformWindow()
+ **/
+
 class Platform
 {
 public:

@@ -1,10 +1,38 @@
 # Copyright (C) Avnish Kirnalli 2024.
+
+import platform
+import sys
+import os
+from io import BytesIO
+
+def is_windows():
+    return platform.system() == 'Windows'
+def is_mac():
+    return platform.system() == 'Darwin'
+
+os.system('cls' if is_windows() else 'clear')
 print("Copyright (C) Avnish Kirnalli 2024.")
 
-import os
-import subprocess
+def in_venv():
+    return sys.prefix != sys.base_prefix
 
-from io import BytesIO
+def restart():
+    os.system(f"{os.getcwd()}/.python/{ 'Scripts' if is_windows() else 'bin' }/python {__file__}")
+    exit()
+
+def create_venv():
+    if not os.path.exists(f'{os.getcwd()}/.python'):
+        print(f'Creating Python venv at {os.getcwd()}/.python')
+        os.system('python3 -m venv ./.python')
+    print(f'Activating Python venv at {os.getcwd()}/.python')
+    if is_windows():
+        os.system('.python/Scripts/activate')
+    if is_mac():
+        os.system('source ./.python/bin/activate')
+    restart()
+
+if not in_venv():
+    create_venv()
 
 # Module checks with Install option
 def yes_or_no(question):
@@ -17,10 +45,8 @@ def yes_or_no(question):
 
 def InstallModule(package):
     if yes_or_no(f'Package {package} not found. Do you want to install Python Package {package}?'):
-        subprocess.call(['pip', 'install', package])
-        os.system('cls')
-        os.system(f'python {os.getcwd()}/{__file__}')
-        exit()
+        os.system(f"{os.getcwd()}/.python/{ 'Scripts' if is_windows() else 'bin' }/pip3 install {package}")
+        restart()
     else:
         print('Exiting')
         exit()
@@ -34,13 +60,19 @@ try:
 except ImportError as e:
     InstallModule('requests')
 try:
-    import zipfile
-except ImportError as e:
-    InstallModule('zipfile')
-try:
     from tqdm import tqdm
 except ImportError as e:
     InstallModule('tqdm')
+    
+try:
+    import zipfile
+except ImportError as e:
+    InstallModule('zipfile')
+if is_mac():
+    try:
+        import tarfile
+    except ImportError as e:
+        InstallModule('tarfile')
 
 def DownloadPremake():
     if os.path.exists(f'{os.getcwd()}/premake'):
@@ -49,7 +81,8 @@ def DownloadPremake():
 
     print('Downloading Premake.')
 
-    url = f'https://github.com/premake/premake-core/releases/download/v5.0.0-beta2/premake-5.0.0-beta2-windows.zip'
+    url = f'https://github.com/premake/premake-core/releases/download/v5.0.0-beta2/premake-5.0.0-beta2-windows.zip' if is_windows() else f'https://github.com/premake/premake-core/releases/download/v5.0.0-beta3/premake-5.0.0-beta3-macosx.tar.gz'
+        
     req = requests.get(url)
 
     filename = url.split('/')[-1]
@@ -61,8 +94,14 @@ def DownloadPremake():
 
     print('Starting Premake Extraction')
 
-    with zipfile.ZipFile(BytesIO(req.content)) as zf:
-        zf.extract('premake5.exe', 'premake/')
+    if is_windows():
+        with zipfile.ZipFile(BytesIO(req.content)) as zf:
+            zf.extract('premake5.exe', 'premake/')
+    if is_mac():
+        archive = tarfile.open(filename)
+        archive.extract('premake5', 'premake/', filter='data')
+        archive.close()
+        os.system(f'chmod +x {os.getcwd()}/premake/premake5')
 
     print('Premake extracted Successfully')
 
@@ -144,10 +183,18 @@ def DownloadImGui():
     with open('ImGui/version.txt', "w") as f:
         f.write(versionNo)
 
-    shutil.copy('ImGui/backends/imgui_impl_dx9.h', 'ImGui/imgui_impl_dx9.h')
-    shutil.copy('ImGui/backends/imgui_impl_dx9.cpp', 'ImGui/imgui_impl_dx9.cpp')
-    shutil.copy('ImGui/backends/imgui_impl_win32.h', 'ImGui/imgui_impl_win32.h')
-    shutil.copy('ImGui/backends/imgui_impl_win32.cpp', 'ImGui/imgui_impl_win32.cpp')
+    if is_windows():
+        shutil.copy('ImGui/backends/imgui_impl_dx9.h', 'ImGui/imgui_impl_dx9.h')
+        shutil.copy('ImGui/backends/imgui_impl_dx9.cpp', 'ImGui/imgui_impl_dx9.cpp')
+        shutil.copy('ImGui/backends/imgui_impl_win32.h', 'ImGui/imgui_impl_win32.h')
+        shutil.copy('ImGui/backends/imgui_impl_win32.cpp', 'ImGui/imgui_impl_win32.cpp')
+
+    if is_mac():
+        shutil.copy('ImGui/backends/imgui_impl_metal.h', 'ImGui/imgui_impl_metal.h')
+        shutil.copy('ImGui/backends/imgui_impl_metal.mm', 'ImGui/imgui_impl_metal.mm')
+        shutil.copy('ImGui/backends/imgui_impl_osx.h', 'ImGui/imgui_impl_osx.h')
+        shutil.copy('ImGui/backends/imgui_impl_osx.mm', 'ImGui/imgui_impl_osx.mm')
+
     shutil.copy('ImGui/misc/cpp/imgui_stdlib.h', 'ImGui/imgui_stdlib.h')
     shutil.copy('ImGui/misc/cpp/imgui_stdlib.cpp', 'ImGui/imgui_stdlib.cpp')
 
@@ -171,17 +218,23 @@ def main():
     projName = input("Enter project name: ")
     print("Generating project")
 
+    if projName == 'default':
+        os.system(f"{os.getcwd()}/premake/premake5 { 'vs2022' if is_windows() else 'xcode4' }")
+        return
+
     shutil.copytree("ImGuiBorderlessWindow", f'{projName}/{projName}')
 
     shutil.copy('premake5.lua', f'{projName}/premake5.lua')
 
     replace_in_file(f'{projName}/premake5.lua', 'ImGuiBorderlessWindow', projName)
 
-    subprocess.run(["cmd", "/c", f'{os.getcwd()}/premake/premake5.exe vs2022'], cwd=f'{os.getcwd()}/{projName}')
+    os.chdir(f'{os.getcwd()}/{projName}')
+    os.system(f"{os.getcwd()}/premake/premake5 { 'vs2022' if is_windows() else 'xcode4' }")
+    os.chdir(f'{os.getcwd()}/..')
 
     os.remove(f'{projName}/premake5.lua')
 
-    print(f'Project generated successfully at {os.getcwd()}\{projName}')
+    print(f'Project generated successfully at {os.getcwd()}\\{projName}')
 
 def DownloadDependencies():
     DownloadImGui()

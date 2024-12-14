@@ -3,6 +3,9 @@
 #ifdef PLATFORM_WINDOWS
 #include "Windows/WindowsPlatform.h"
 #endif
+#ifdef PLATFORM_MAC
+#include "Mac/MacPlatform.h"
+#endif
 
 #if _DEBUG
 #include <iostream>
@@ -17,6 +20,9 @@ Platform* Platform::Get()
 
 #ifdef PLATFORM_WINDOWS
     m_CurrentPlatform = new WindowsPlatform();
+#endif
+#ifdef PLATFORM_MAC
+    m_CurrentPlatform = new MacPlatform();
 #endif
 
 #if _DEBUG
