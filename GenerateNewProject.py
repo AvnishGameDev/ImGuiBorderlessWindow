@@ -209,13 +209,9 @@ def main():
         if is_windows():
             os.system(f'{os.getcwd()}/premake/premake5 vs2022')
             print('Generated Visual Studio solution')
-            if yes_or_no('Do you also want to generate MacOS XCode project files?'):
-                os.system(f'{os.getcwd()}/premake/premake5 xcode4')
         if is_mac():
             os.system(f'{os.getcwd()}/premake/premake5 xcode4')
             print('Generated XCode project files.')
-            if yes_or_no('Do you also want to generate Visual Studio solution?'):
-                os.system(f'{os.getcwd()}/premake/premake5 xcode4')
         input('Press any key to continue....')
         return
     
@@ -231,16 +227,12 @@ def main():
     if is_windows():
             os.system(f'{os.getcwd()}/../premake/premake5 vs2022')
             print('Generated Visual Studio solution')
-            if yes_or_no('Do you also want to generate MacOS XCode project files?'):
-                os.system(f'{os.getcwd()}/../premake/premake5 xcode4')
     if is_mac():
         os.system(f'{os.getcwd()}/../premake/premake5 xcode4')
         print('Generated XCode project files.')
-        if yes_or_no('Do you also want to generate Visual Studio solution?'):
-            os.system(f'{os.getcwd()}/../premake/premake5 xcode4')
     os.chdir(f'{os.getcwd()}/..')
 
-    os.remove(f'{projName}/premake5.lua')
+    # os.remove(f'{projName}/premake5.lua')
 
     # Set App Name in Info-macOS.plist
     replace_in_file(f'{projName}/{projName}/Gui/Platform/Mac/Info-macOS.plist', "APP_NAME", projName)
