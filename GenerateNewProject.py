@@ -243,7 +243,7 @@ def main():
     os.remove(f'{projName}/premake5.lua')
 
     # Set App Name in Info-macOS.plist
-    replace_in_file(f'{projName}/Gui/Platform/Mac/Info-macOS.plist', "APP_NAME", projName)
+    replace_in_file(f'{projName}/{projName}/Gui/Platform/Mac/Info-macOS.plist', "APP_NAME", projName)
 
     print(f'Project generated successfully at {os.getcwd()}\\{projName}')
     input('Press any key to continue....')
