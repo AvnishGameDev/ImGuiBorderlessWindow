@@ -221,9 +221,6 @@ def main():
     
     print("Generating project")
 
-    # Set App Name in Info-macOS.plist
-    replace_in_file("ImGuiBorderlessWindow/Gui/Platform/Mac/Info-macOS.plist", "APP_NAME", projName)
-
     shutil.copytree("ImGuiBorderlessWindow", f'{projName}/{projName}')
 
     shutil.copy('premake5.lua', f'{projName}/premake5.lua')
@@ -244,6 +241,9 @@ def main():
     os.chdir(f'{os.getcwd()}/..')
 
     os.remove(f'{projName}/premake5.lua')
+
+    # Set App Name in Info-macOS.plist
+    replace_in_file(f'{projName}/Gui/Platform/Mac/Info-macOS.plist', "APP_NAME", projName)
 
     print(f'Project generated successfully at {os.getcwd()}\\{projName}')
     input('Press any key to continue....')
