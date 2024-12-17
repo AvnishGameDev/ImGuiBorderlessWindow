@@ -1,23 +1,28 @@
 :: Copyright (C) Avnish Kirnalli 2024.
 
-@echo off
-
 @echo off & title Generate New Project
 
-goto :DOES_PYTHON_EXIST
+setlocal
 
-:DOES_PYTHON_EXIST
-python -V | find /v "Python" >NUL 2>NUL && (goto :PYTHON_DOES_NOT_EXIST)
-python -V | find "Python"    >NUL 2>NUL && (goto :PYTHON_DOES_EXIST)
-goto :EOF
+:: Check for python3
+python3 --version >nul 2>&1
+if %errorlevel% equ 0 (
+    set "PYTHON_CMD=python3"
+    goto RUN_SCRIPT
+)
 
-:PYTHON_DOES_NOT_EXIST
-echo Python is not installed on your system.
-echo Now opening the download URL.
-start "" "https://www.python.org/downloads/windows/"
-goto :EOF
+:: Check for python (fallback)
+python --version >nul 2>&1
+if %errorlevel% equ 0 (
+    set "PYTHON_CMD=python"
+    goto RUN_SCRIPT
+)
 
-:PYTHON_DOES_EXIST
-python GenerateNewProject.py
+:: Neither python3 nor python is installed
+echo Python is not installed or not in your PATH.
+echo Please install Python from https://www.python.org/downloads/windows and try again.
+pause
+exit /b 1
 
-:EOF
+:RUN_SCRIPT
+%PYTHON_CMD% script.py
