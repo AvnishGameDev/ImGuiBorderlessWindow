@@ -25,4 +25,4 @@ pause
 exit /b 1
 
 :RUN_SCRIPT
-%PYTHON_CMD% script.py
+%PYTHON_CMD% GenerateNewProject.py
