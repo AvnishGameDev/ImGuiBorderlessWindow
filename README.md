@@ -1,22 +1,21 @@
 # ImGuiBorderlessWindow
- ImGui Borderless Window made by AvnishGameDev. Uses DirectX, Windows API and ImGui. This project currently only supports Windows.
+ImGui Borderless Window made by AvnishGameDev. Works on Windows and MacOS.
+Based on [Dear ImGui](https://github.com/ocornut/imgui).
+
+ImGuiBorderlessWindow provides a easy ready-to-use template for a Borderless Windowed App, packed with multiple Themes, Fonts and easy Asset loading.
+
+This is a perfect template for Apps like Mod Menus, Helper tools, Utility application etc.
 
 [Documentation](https://docs.avnishgamedev.com/documentation/imguiborderlesswindow/)
  
- # Steps to setup
- 1. Clone the project with the following command or download the zip
-    
-     ```git clone https://github.com/AvnishGameDev/ImGuiBorderlessWindow.git```
- 2. In the cloned folder, Run GenerateNewProject.bat
-
-      ![image](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/assets/64523755/6f02c32c-2606-4778-8a4c-950893d2763a)
- 3. Then the dependencies will be downloaded (Make sure you have an active internet connection)
-
-      ![image](https://github.com/user-attachments/assets/bd5eef6d-e0f6-4a9f-b34e-e593f6ae61c1)
- 4. Then enter the project name when prompted (no spaces allowed)
-    
-      ![image](https://github.com/user-attachments/assets/e297c86c-bf95-4855-ab56-bfb1c352f5e1)
- 5. You can find the generated project solution at the specified location.
+# Steps to setup
+1. Clone the repo using the following command or [download it as a zip](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/archive/refs/heads/main.zip).
+     ```git clone https://github.com/AvnishGameDev/ImGuiBorderlessWindow```
+2. Run the `GenerateNewProject.bat` or `GenerateNewProject.sh` on MacOS (You'll have to run ```chmod +x GenerateNewProject.sh``` before running it).
+3. The Script should walk you through smoothly, you might be prompted to install missing Python packages, just type `y` whenever prompted.
+4. Enter your Project Name (No spaces).
+5. Your project should be generated and the script will tell you the location.
+6. You will find the project's solution files in the solution folder.
 
 # How to use Themes
 Themes are available in Themes.h, in order to activate a theme, just include ```Themes.h``` and call ```Theme::AnyThemeOfYourChoice()``` to activate that theme.
@@ -43,5 +42,5 @@ Themes are available in Themes.h, in order to activate a theme, just include ```
 ## 7. Material Flat
 ![image](https://user-images.githubusercontent.com/64523755/221153739-540cf5b5-afb4-4fc5-9543-58960541bf65.png)
 
-## 8. Comfy
+## 8. Comfy (Default)
 ![image](https://user-images.githubusercontent.com/64523755/221153867-0232b47a-d7ad-4b27-9077-cdbff83e5d4a.png)
