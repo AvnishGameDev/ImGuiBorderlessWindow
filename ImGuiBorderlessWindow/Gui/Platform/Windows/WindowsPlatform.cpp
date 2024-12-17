@@ -256,3 +256,13 @@ void WindowsPlatform::EndRender()
     if (result == D3DERR_DEVICELOST && device->TestCooperativeLevel() == D3DERR_DEVICENOTRESET)
         ResetDevice();
 }
+
+std::string WindowsPlatform::GetAssetPath(const std::string& relativePath)
+{
+    return ("Assets/" + relativePath);
+}
+
+void WindowsPlatform::LaunchURL(const std::string& URL)
+{
+    ShellExecute(0, 0, URL.c_str(), 0, 0, SW_SHOW);
+}

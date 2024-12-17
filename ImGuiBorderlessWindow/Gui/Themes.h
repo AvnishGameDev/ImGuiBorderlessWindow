@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "ThirdParty/imGui/imgui.h"
+#include "ThirdParty/ImGui/imgui.h"
 
 namespace Theme
 {

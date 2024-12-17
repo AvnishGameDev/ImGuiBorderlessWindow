@@ -13,4 +13,10 @@ public:
     bool DestroyPlatformWindow() override;
     void BeginRender() override;
     void EndRender() override;
+    
+    /* File IO Helpers */
+    std::string GetAssetPath(const std::string& relativePath) override;
+    
+    /* Misc */
+    void LaunchURL(const std::string& URL) override;
 };

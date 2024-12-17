@@ -31,7 +31,7 @@ App::App(std::string _appName, int _width, int _height) : appName(std::move(_app
     
     Gui::CreateImGui();
     
-    Theme::DefaultDark();
+    //Theme::DefaultDark();
 }
 
 App::~App()

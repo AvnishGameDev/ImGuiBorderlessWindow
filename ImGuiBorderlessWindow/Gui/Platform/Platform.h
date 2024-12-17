@@ -23,6 +23,12 @@ public:
     virtual void BeginRender() = 0;
     virtual void EndRender() = 0;
     
+    /* File IO Helpers */
+    virtual std::string GetAssetPath(const std::string& relativePath) = 0;
+    
+    /* Misc */
+    virtual void LaunchURL(const std::string& URL) = 0;
+    
 private:
     static Platform* m_CurrentPlatform;
 };

@@ -183,17 +183,15 @@ def DownloadImGui():
     with open('ImGui/version.txt', "w") as f:
         f.write(versionNo)
 
-    if is_windows():
-        shutil.copy('ImGui/backends/imgui_impl_dx9.h', 'ImGui/imgui_impl_dx9.h')
-        shutil.copy('ImGui/backends/imgui_impl_dx9.cpp', 'ImGui/imgui_impl_dx9.cpp')
-        shutil.copy('ImGui/backends/imgui_impl_win32.h', 'ImGui/imgui_impl_win32.h')
-        shutil.copy('ImGui/backends/imgui_impl_win32.cpp', 'ImGui/imgui_impl_win32.cpp')
-
-    if is_mac():
-        shutil.copy('ImGui/backends/imgui_impl_metal.h', 'ImGui/imgui_impl_metal.h')
-        shutil.copy('ImGui/backends/imgui_impl_metal.mm', 'ImGui/imgui_impl_metal.mm')
-        shutil.copy('ImGui/backends/imgui_impl_osx.h', 'ImGui/imgui_impl_osx.h')
-        shutil.copy('ImGui/backends/imgui_impl_osx.mm', 'ImGui/imgui_impl_osx.mm')
+    shutil.copy('ImGui/backends/imgui_impl_dx9.h', 'ImGui/imgui_impl_dx9.h')
+    shutil.copy('ImGui/backends/imgui_impl_win32.h', 'ImGui/imgui_impl_win32.h')
+    shutil.copy('ImGui/backends/imgui_impl_metal.h', 'ImGui/imgui_impl_metal.h')
+    shutil.copy('ImGui/backends/imgui_impl_osx.h', 'ImGui/imgui_impl_osx.h')
+    
+    shutil.copy('ImGui/backends/imgui_impl_dx9.cpp', 'ImGuiBorderlessWindow/Gui/Platform/Windows/imgui_impl_dx9.cpp')
+    shutil.copy('ImGui/backends/imgui_impl_win32.cpp', 'ImGuiBorderlessWindow/Gui/Platform/Windows/imgui_impl_win32.cpp')
+    shutil.copy('ImGui/backends/imgui_impl_metal.mm', 'ImGuiBorderlessWindow/Gui/Platform/Mac/imgui_impl_metal.mm')
+    shutil.copy('ImGui/backends/imgui_impl_osx.mm', 'ImGuiBorderlessWindow/Gui/Platform/Mac/imgui_impl_osx.mm')
 
     shutil.copy('ImGui/misc/cpp/imgui_stdlib.h', 'ImGui/imgui_stdlib.h')
     shutil.copy('ImGui/misc/cpp/imgui_stdlib.cpp', 'ImGui/imgui_stdlib.cpp')
@@ -219,8 +217,12 @@ def main():
     print("Generating project")
 
     if projName == 'default':
-        os.system(f"{os.getcwd()}/premake/premake5 { 'vs2022' if is_windows() else 'xcode4' }")
+        os.system(f'{os.getcwd()}/premake/premake5 vs2022')
+        os.system(f'{os.getcwd()}/premake/premake5 xcode4')
         return
+
+    # Set App Name in Info-macOS.plist
+    replace_in_file("ImGuiBorderlessWindow/Gui/Platform/Mac/Info-macOS.plist", "APP_NAME", projName)
 
     shutil.copytree("ImGuiBorderlessWindow", f'{projName}/{projName}')
 
@@ -229,7 +231,8 @@ def main():
     replace_in_file(f'{projName}/premake5.lua', 'ImGuiBorderlessWindow', projName)
 
     os.chdir(f'{os.getcwd()}/{projName}')
-    os.system(f"{os.getcwd()}/premake/premake5 { 'vs2022' if is_windows() else 'xcode4' }")
+    os.system(f'{os.getcwd()}/../premake/premake5 vs2022')
+    os.system(f'{os.getcwd()}/../premake/premake5 xcode4')
     os.chdir(f'{os.getcwd()}/..')
 
     os.remove(f'{projName}/premake5.lua')

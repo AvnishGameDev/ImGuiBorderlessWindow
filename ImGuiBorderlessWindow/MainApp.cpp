@@ -8,13 +8,15 @@
 #include "Gui/GuiHelper.h"
 #include "Gui/Themes.h"
 
+#include "Gui/Platform/Platform.h"
+
 MainApp::MainApp() : App("ImGuiBorderlessWindow by AvnishGameDev", 400, 140) // <-- Put your App Name here.
 {
     // Check All the available themes in Themes.h and apply any as shown below.
     Theme::Comfy();
 
-    // Loading Font
-    //Gui::PushFont(Font("Assets/DroidSans.ttf", 18.0f));
+    // Loading Font from Assets folder
+    Gui::PushFont(Font(Platform::Get()->GetAssetPath("DroidSans.ttf"), 18.0f));
 }
 
 void MainApp::Render()
@@ -25,8 +27,6 @@ void MainApp::Render()
     
     if (GH::ButtonCentered("Info"))
     {
-#if PLATFORM_WINDOWS
-        ShellExecute(0, 0, L"https://github.com/AvnishGameDev/ImGuiBorderlessWindow", 0, 0, SW_SHOW); // Open Website
-#endif
+        Platform::Get()->LaunchURL("https://github.com/AvnishGameDev/ImGuiBorderlessWindow");
     }
 }

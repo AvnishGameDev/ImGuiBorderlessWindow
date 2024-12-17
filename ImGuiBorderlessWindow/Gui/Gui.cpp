@@ -58,7 +58,7 @@ void Gui::EndImGuiRender() noexcept
 
 void Gui::PushFont(const Font& inFont) noexcept
 {
-	if (inFont.GetImGuiFont()->IsLoaded())
+	if (inFont.GetImGuiFont() && inFont.GetImGuiFont()->IsLoaded())
 		ImGui::PushFont(inFont.GetImGuiFont());
 }
 

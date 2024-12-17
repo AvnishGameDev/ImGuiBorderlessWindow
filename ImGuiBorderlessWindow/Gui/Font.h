@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "ThirdParty/imGui/imgui.h"
+#include "ThirdParty/ImGui/imgui.h"
 
 struct Font
 {
