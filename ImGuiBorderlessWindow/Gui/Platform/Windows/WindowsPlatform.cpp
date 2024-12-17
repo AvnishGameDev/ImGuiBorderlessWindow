@@ -264,5 +264,5 @@ std::string WindowsPlatform::GetAssetPath(const std::string& relativePath)
 
 void WindowsPlatform::LaunchURL(const std::string& URL)
 {
-    ShellExecute(0, 0, URL.c_str(), 0, 0, SW_SHOW);
+    ShellExecute(nullptr, L"open", std::wstring(URL.begin(), URL.end()).c_str(), nullptr, nullptr, SW_SHOW);
 }

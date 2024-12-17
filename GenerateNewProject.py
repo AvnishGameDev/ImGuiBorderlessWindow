@@ -183,16 +183,6 @@ def DownloadImGui():
     with open('ImGui/version.txt', "w") as f:
         f.write(versionNo)
 
-    shutil.copy('ImGui/backends/imgui_impl_dx9.h', 'ImGui/imgui_impl_dx9.h')
-    shutil.copy('ImGui/backends/imgui_impl_win32.h', 'ImGui/imgui_impl_win32.h')
-    shutil.copy('ImGui/backends/imgui_impl_metal.h', 'ImGui/imgui_impl_metal.h')
-    shutil.copy('ImGui/backends/imgui_impl_osx.h', 'ImGui/imgui_impl_osx.h')
-    
-    shutil.copy('ImGui/backends/imgui_impl_dx9.cpp', 'ImGuiBorderlessWindow/Gui/Platform/Windows/imgui_impl_dx9.cpp')
-    shutil.copy('ImGui/backends/imgui_impl_win32.cpp', 'ImGuiBorderlessWindow/Gui/Platform/Windows/imgui_impl_win32.cpp')
-    shutil.copy('ImGui/backends/imgui_impl_metal.mm', 'ImGuiBorderlessWindow/Gui/Platform/Mac/imgui_impl_metal.mm')
-    shutil.copy('ImGui/backends/imgui_impl_osx.mm', 'ImGuiBorderlessWindow/Gui/Platform/Mac/imgui_impl_osx.mm')
-
     shutil.copy('ImGui/misc/cpp/imgui_stdlib.h', 'ImGui/imgui_stdlib.h')
     shutil.copy('ImGui/misc/cpp/imgui_stdlib.cpp', 'ImGui/imgui_stdlib.cpp')
 

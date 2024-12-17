@@ -23,8 +23,6 @@ public:
     /* Misc */
     void LaunchURL(const std::string& URL) override;
     
-private:
-    
     // winapi window vars
     static HWND window;
     static WNDCLASSEX windowClass;
