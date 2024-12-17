@@ -64,7 +64,7 @@
         self.window.hasShadow = YES;
         [self.window setLevel:NSMainMenuWindowLevel];
         self.window.contentView.wantsLayer = YES;
-        self.window.contentView.layer.cornerRadius = 20.0;
+        self.window.contentView.layer.cornerRadius = 15.0;
         self.window.contentView.layer.masksToBounds = YES;
         [self.window center];
         
