@@ -9,10 +9,10 @@ This is a perfect template for Apps like Mod Menus, Helper tools, Utility applic
 [Documentation](https://docs.avnishgamedev.com/documentation/imguiborderlesswindow/)
  
 # Steps to setup
-1. Clone the repo using the following command or [download it as a zip](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/archive/refs/heads/main.zip).
-     ```git clone https://github.com/AvnishGameDev/ImGuiBorderlessWindow```
-2. Run the `GenerateNewProject.bat` or `GenerateNewProject.sh` on MacOS (You'll have to run ```chmod +x GenerateNewProject.sh``` before running it).
-3. The Script should walk you through smoothly, you might be prompted to install missing Python packages, just type `y` whenever prompted.
+1. Clone the repo using the following command or [download it as a zip](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/archive/refs/heads/main.zip).\
+```git clone https://github.com/AvnishGameDev/ImGuiBorderlessWindow```
+2. Run the `GenerateNewProject.bat` if you're on Windows or `GenerateNewProject.sh`  if you're on MacOS (You'll have to run ```chmod +x GenerateNewProject.sh``` before running it).
+3. The Script should walk you through all the steps, you might be prompted to install missing Python packages, just type `y` whenever prompted.
 4. Enter your Project Name (No spaces).
 5. Your project should be generated and the script will tell you the location.
 6. You will find the project's solution files in the solution folder.
