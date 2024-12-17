@@ -12,8 +12,8 @@ void Gui::CreateImGui() noexcept
 	ImGui::CreateContext();
 	Platform::Get()->InitImguiImpl();
 	ImGuiIO& io = ImGui::GetIO();
-    io.DisplaySize.x = Gui::WIDTH;
-    io.DisplaySize.y = Gui::HEIGHT;
+    io.DisplaySize.x = static_cast<float>(Gui::WIDTH);
+    io.DisplaySize.y = static_cast<float>(Gui::HEIGHT);
 
 	io.IniFilename = NULL;
 
