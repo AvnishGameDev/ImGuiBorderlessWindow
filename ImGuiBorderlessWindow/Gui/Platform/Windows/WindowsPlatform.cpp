@@ -87,6 +87,11 @@ long __stdcall WindowProcess(
     return long(DefWindowProc(window, message, wideParameter, longParameter));
 }
 
+void SetRoundedWindow(HWND hWnd, int width, int height, int radius) {
+    HRGN hRegion = CreateRoundRectRgn(0, 0, width + 1, height + 1, radius, radius);
+    SetWindowRgn(hWnd, hRegion, TRUE);
+}
+
 void WindowsPlatform::CreateHWindow(const char* inWindowName) noexcept
 {
     Gui::windowName = inWindowName;
@@ -122,8 +127,11 @@ void WindowsPlatform::CreateHWindow(const char* inWindowName) noexcept
         windowClass.hInstance,
         nullptr
     );
+
     SetLayeredWindowAttributes(window, 0, 0, LWA_ALPHA);
     SetLayeredWindowAttributes(window, 0, RGB(0, 0, 0), LWA_COLORKEY);
+
+    SetRoundedWindow(window, Gui::WIDTH, Gui::HEIGHT, 20);
 
     ShowWindow(window, SW_SHOWNORMAL);
     UpdateWindow(window);
