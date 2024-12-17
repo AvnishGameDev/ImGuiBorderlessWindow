@@ -1,4 +1,5 @@
 # Copyright (C) Avnish Kirnalli 2024.
+print("Copyright (C) Avnish Kirnalli 2024.")
 
 import platform
 import sys
@@ -10,23 +11,21 @@ def is_windows():
 def is_mac():
     return platform.system() == 'Darwin'
 
-os.system('cls' if is_windows() else 'clear')
-print("Copyright (C) Avnish Kirnalli 2024.")
-
 def in_venv():
     return sys.prefix != sys.base_prefix
 
 def restart():
-    os.system(f"{os.getcwd()}/.python/{ 'Scripts' if is_windows() else 'bin' }/python {__file__}")
+    print('Restarting Script')
+    os.system(f"{ 'call ' if is_windows() else '' }{os.getcwd()}/.python/{ 'Scripts' if is_windows() else 'bin' }/python {__file__}")
     exit()
 
 def create_venv():
     if not os.path.exists(f'{os.getcwd()}/.python'):
-        print(f'Creating Python venv at {os.getcwd()}/.python')
+        print(f'Creating Python venv at {os.getcwd()}\\.python')
         os.system('python3 -m venv ./.python')
-    print(f'Activating Python venv at {os.getcwd()}/.python')
+    print(f'Activating Python venv at {os.getcwd()}\\.python')
     if is_windows():
-        os.system('.python/Scripts/activate')
+        os.system('call .python/Scripts/activate')
     if is_mac():
         os.system('source ./.python/bin/activate')
     restart()
@@ -204,12 +203,23 @@ def replace_in_file(file_path, target_string, replacement_string):
 
 def main():
     projName = input("Enter project name: ")
-    print("Generating project")
 
     if projName == 'default':
-        os.system(f'{os.getcwd()}/premake/premake5 vs2022')
-        os.system(f'{os.getcwd()}/premake/premake5 xcode4')
+        print(f'Generating default project at {os.getcwd()}')
+        if is_windows():
+            os.system(f'{os.getcwd()}/premake/premake5 vs2022')
+            print('Generated Visual Studio solution')
+            if yes_or_no('Do you also want to generate MacOS XCode project files?'):
+                os.system(f'{os.getcwd()}/premake/premake5 xcode4')
+        if is_mac():
+            os.system(f'{os.getcwd()}/premake/premake5 xcode4')
+            print('Generated XCode project files.')
+            if yes_or_no('Do you also want to generate Visual Studio solution?'):
+                os.system(f'{os.getcwd()}/premake/premake5 xcode4')
+        input('Press any key to continue....')
         return
+    
+    print("Generating project")
 
     # Set App Name in Info-macOS.plist
     replace_in_file("ImGuiBorderlessWindow/Gui/Platform/Mac/Info-macOS.plist", "APP_NAME", projName)
@@ -221,17 +231,41 @@ def main():
     replace_in_file(f'{projName}/premake5.lua', 'ImGuiBorderlessWindow', projName)
 
     os.chdir(f'{os.getcwd()}/{projName}')
-    os.system(f'{os.getcwd()}/../premake/premake5 vs2022')
-    os.system(f'{os.getcwd()}/../premake/premake5 xcode4')
+    if is_windows():
+            os.system(f'{os.getcwd()}/../premake/premake5 vs2022')
+            print('Generated Visual Studio solution')
+            if yes_or_no('Do you also want to generate MacOS XCode project files?'):
+                os.system(f'{os.getcwd()}/../premake/premake5 xcode4')
+    if is_mac():
+        os.system(f'{os.getcwd()}/../premake/premake5 xcode4')
+        print('Generated XCode project files.')
+        if yes_or_no('Do you also want to generate Visual Studio solution?'):
+            os.system(f'{os.getcwd()}/../premake/premake5 xcode4')
     os.chdir(f'{os.getcwd()}/..')
 
     os.remove(f'{projName}/premake5.lua')
 
     print(f'Project generated successfully at {os.getcwd()}\\{projName}')
+    input('Press any key to continue....')
 
 def DownloadDependencies():
+    print('Fetching Dependencies')
     DownloadImGui()
     DownloadPremake()
 
+def CheckInternetConnection():
+    try:
+        requests.get('https://google.com')
+    except Exception as e:
+        return False
+    return True
+
+if not CheckInternetConnection():
+    print('No Internet Connection detected! Internet is required to run this script.')
+    input('Press any key to continue....')
+    exit()
+
 DownloadDependencies()
 main()
+
+

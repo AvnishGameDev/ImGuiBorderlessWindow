@@ -21,4 +21,3 @@ goto :EOF
 python GenerateNewProject.py
 
 :EOF
-PAUSE
