@@ -30,7 +30,7 @@ project "ImGuiBorderlessWindow"
       defines { "RELEASE" }
       optimize "On"
       
-   filter "system:windows"
+   filter "action:vs*"
       defines { "PLATFORM_WINDOWS "}
       links { "d3d9" }
       files { "ImGuiBorderlessWindow/Gui/Platform/Windows/**" }
@@ -44,7 +44,7 @@ project "ImGuiBorderlessWindow"
          "{COPYDIR} ../ImGuiBorderlessWindow/Assets %{cfg.targetdir}/Assets"
       }
 
-   filter "system:macosx"
+   filter "action:xcode*"
       defines { "PLATFORM_MAC "}
       links {
          "Cocoa.framework",
@@ -65,5 +65,5 @@ project "ImGuiBorderlessWindow"
       }
       xcodebuildsettings {
          ["INFOPLIST_FILE"] = "$(SRCROOT)/../ImGuiBorderlessWindow/Gui/Platform/Mac/Info-macOS.plist"
-     }
+      }
      
