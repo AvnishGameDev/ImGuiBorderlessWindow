@@ -1,4 +1,4 @@
-:: Copyright (C) Avnish Kirnalli 2024.
+:: Copyright (C) Avnish Kirnalli 2025.
 
 @echo off & title Generate New Project
 
@@ -25,4 +25,5 @@ pause
 exit /b 1
 
 :RUN_SCRIPT
-%PYTHON_CMD% GenerateNewProject.py
+echo Using %PYTHON_CMD%
+%PYTHON_CMD% GenerateNewProject.py %PYTHON_CMD%

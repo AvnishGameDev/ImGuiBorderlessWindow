@@ -1,10 +1,28 @@
-# Copyright (C) Avnish Kirnalli 2024.
-print("Copyright (C) Avnish Kirnalli 2024.")
+# Copyright (C) Avnish Kirnalli 2025.
+print("Copyright (C) Avnish Kirnalli 2025.")
 
 import platform
 import sys
 import os
 from io import BytesIO
+
+# Module checks with Install option
+def yes_or_no(question):
+    reply = str(input(question + ' (y/n): ')).lower().strip()
+    if reply[0] == 'y' or reply[0] == 'yes':
+        return True
+    if reply[0] == 'n' or reply[0] == 'no':
+        return False
+    return yes_or_no(question)
+
+global python_cmd
+
+if len(sys.argv) > 1:
+    python_cmd = sys.argv[1]  # First argument after script name
+else:
+    if (not yes_or_no("This script shouldn't be ran manually. Are you sure you want to proceed?")):
+        print('Exiting')
+        exit()
 
 def is_windows():
     return platform.system() == 'Windows'
@@ -16,13 +34,13 @@ def in_venv():
 
 def restart():
     print('Restarting Script')
-    os.system(f"{ 'call ' if is_windows() else '' }{os.getcwd()}/.python/{ 'Scripts' if is_windows() else 'bin' }/python {__file__}")
+    os.system(f"{ 'call ' if is_windows() else '' }{os.getcwd()}/.python/{ 'Scripts' if is_windows() else 'bin' }/python {__file__} {python_cmd}")
     exit()
 
 def create_venv():
     if not os.path.exists(f'{os.getcwd()}/.python'):
         print(f'Creating Python venv at {os.getcwd()}\\.python')
-        os.system('python3 -m venv ./.python')
+        os.system(f'{python_cmd} -m venv ./.python')
     print(f'Activating Python venv at {os.getcwd()}\\.python')
     if is_windows():
         os.system('call .python/Scripts/activate')
@@ -32,15 +50,6 @@ def create_venv():
 
 if not in_venv():
     create_venv()
-
-# Module checks with Install option
-def yes_or_no(question):
-    reply = str(input(question + ' (y/n): ')).lower().strip()
-    if reply[0] == 'y' or reply[0] == 'yes':
-        return True
-    if reply[0] == 'n' or reply[0] == 'no':
-        return False
-    return yes_or_no(question)
 
 def InstallModule(package):
     if yes_or_no(f'Package {package} not found. Do you want to install Python Package {package}?'):

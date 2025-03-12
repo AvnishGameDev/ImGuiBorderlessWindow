@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (C) Avnish Kirnalli 2024.
+# Copyright (C) Avnish Kirnalli 2025.
 
 # Check for python3 or fallback to python
 if command -v python3 &>/dev/null; then
@@ -12,4 +12,5 @@ else
 fi
 
 cd "$(dirname "$0")"
-$PYTHON_EXEC GenerateNewProject.py
+echo "Using $PYTHON_EXEC"
+$PYTHON_EXEC GenerateNewProject.py $PYTHON_EXEC
