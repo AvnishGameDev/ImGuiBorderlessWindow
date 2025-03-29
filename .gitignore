@@ -47,7 +47,6 @@ Solution/**
 
 # Python virtual environment
 .python/
-venv/
 env/
 .env/
 .venv/

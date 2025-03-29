@@ -26,14 +26,14 @@ exit /b 1
 
 :CHECK_VENV
 :: Check if virtual environment exists, if not create it
-if not exist "venv" (
+if not exist ".python" (
     echo Creating virtual environment...
-    %PYTHON_CMD% -m venv venv
+    %PYTHON_CMD% -m venv .python
 )
 
 :: Activate virtual environment
-if exist "venv\Scripts\activate.bat" (
-    call venv\Scripts\activate.bat
+if exist ".python\Scripts\activate.bat" (
+    call .python\Scripts\activate.bat
 ) else (
     echo Error: Virtual environment activation script not found
     pause

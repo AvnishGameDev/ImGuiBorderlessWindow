@@ -35,20 +35,20 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 # Create virtual environment if it doesn't exist
-if [ ! -d "venv" ]; then
+if [ ! -d ".python" ]; then
     status "Creating virtual environment..."
-    if ! $PYTHON_EXEC -m venv venv; then
+    if ! $PYTHON_EXEC -m venv .python; then
         error "Failed to create virtual environment"
     fi
 fi
 
 # Activate virtual environment
-if [ ! -f "venv/bin/activate" ]; then
+if [ ! -f ".python/bin/activate" ]; then
     error "Virtual environment activation script not found"
 fi
 
 # Activate the virtual environment
-source venv/bin/activate
+source .python/bin/activate
 
 # Verify we're in the virtual environment
 if [ -z "${VIRTUAL_ENV:-}" ]; then

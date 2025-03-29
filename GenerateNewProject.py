@@ -25,11 +25,14 @@ def is_mac():
 def is_linux():
     return platform.system() == 'Linux'
 
-def InstallModule(package):
+def InstallModule(package, specific_import=None):
     if yes_or_no(f'Package {package} not found. Do you want to install Python Package {package}?'):
         subprocess.check_call([sys.executable, "-m", "pip", "install", package])
         try:
-            return importlib.import_module(package)
+            module = importlib.import_module(package)
+            if specific_import:
+                return getattr(module, specific_import)
+            return module
         except ImportError:
             print('Failed to import module after installation')
             exit()
@@ -48,7 +51,7 @@ except ImportError:
 try:
     from tqdm import tqdm
 except ImportError:
-    tqdm = InstallModule('tqdm')
+    tqdm = InstallModule('tqdm', 'tqdm')
     
 try:
     import zipfile
