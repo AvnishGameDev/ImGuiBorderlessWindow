@@ -11,7 +11,7 @@ namespace GH // Gui Helper
     static void TextCentered(const std::string& text)
     {
         ImGui::SetCursorPosX((ImGui::GetWindowSize().x - ImGui::CalcTextSize(text.c_str()).x) * 0.5f);
-        ImGui::Text(text.c_str());
+        ImGui::Text("%s", text.c_str());
     }
     
     static void TextCenteredMultiline(const std::string& text)
@@ -33,14 +33,14 @@ namespace GH // Gui Helper
         ImGui::NewLine();
         ImGui::SameLine(text_indentation);
         ImGui::PushTextWrapPos(win_width - text_indentation);
-        ImGui::TextWrapped(text.c_str());
+        ImGui::TextWrapped("%s", text.c_str());
         ImGui::PopTextWrapPos();
     }
     
     static void TextCenterColored(const std::string& text, const ImVec4& color)
     {
         ImGui::SetCursorPosX((ImGui::GetWindowSize().x - ImGui::CalcTextSize(text.c_str()).x) * 0.5f);
-        ImGui::TextColored(color, text.c_str());
+        ImGui::TextColored(color, "%s", text.c_str());
     }
 
     static bool ButtonCentered(const std::string& text)
