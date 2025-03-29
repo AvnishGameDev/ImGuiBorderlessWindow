@@ -66,4 +66,22 @@ project "ImGuiBorderlessWindow"
       xcodebuildsettings {
          ["INFOPLIST_FILE"] = "$(SRCROOT)/../ImGuiBorderlessWindow/Gui/Platform/Mac/Info-macOS.plist"
      }
+     filter "system:linux"
+      defines { "PLATFORM_LINUX "}
+      links {
+         "X11",
+         "GL",
+         "glfw",
+         "Xext"
+      }
+      files { "ImGuiBorderlessWindow/Gui/Platform/Linux/**" }
+      files { 
+         "ImGuiBorderlessWindow/Gui/ThirdParty/ImGui/backends/imgui_impl_opengl3.h", 
+         "ImGuiBorderlessWindow/Gui/ThirdParty/ImGui/backends/imgui_impl_opengl3.cpp",
+         "ImGuiBorderlessWindow/Gui/ThirdParty/ImGui/backends/imgui_impl_glfw.h",
+         "ImGuiBorderlessWindow/Gui/ThirdParty/ImGui/backends/imgui_impl_glfw.cpp"
+      }
+      postbuildcommands {
+         "{COPYDIR} ../ImGuiBorderlessWindow/Assets %{cfg.targetdir}/Assets"
+      }
      

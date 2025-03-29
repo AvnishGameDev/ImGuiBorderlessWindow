@@ -5,82 +5,60 @@ import platform
 import sys
 import os
 from io import BytesIO
+import importlib
+import subprocess
 
-# Module checks with Install option
 def yes_or_no(question):
     reply = str(input(question + ' (y/n): ')).lower().strip()
+    if not reply:
+        return yes_or_no(question)
     if reply[0] == 'y' or reply[0] == 'yes':
         return True
     if reply[0] == 'n' or reply[0] == 'no':
         return False
     return yes_or_no(question)
 
-global python_cmd
-
-if len(sys.argv) > 1:
-    python_cmd = sys.argv[1]  # First argument after script name
-else:
-    if (not yes_or_no("This script shouldn't be ran manually. Are you sure you want to proceed?")):
-        print('Exiting')
-        exit()
-
 def is_windows():
     return platform.system() == 'Windows'
 def is_mac():
     return platform.system() == 'Darwin'
-
-def in_venv():
-    return sys.prefix != sys.base_prefix
-
-def restart():
-    print('Restarting Script')
-    os.system(f"{ 'call ' if is_windows() else '' }{os.getcwd()}/.python/{ 'Scripts' if is_windows() else 'bin' }/python {__file__} {python_cmd}")
-    exit()
-
-def create_venv():
-    if not os.path.exists(f'{os.getcwd()}/.python'):
-        print(f'Creating Python venv at {os.getcwd()}\\.python')
-        os.system(f'{python_cmd} -m venv ./.python')
-    print(f'Activating Python venv at {os.getcwd()}\\.python')
-    if is_windows():
-        os.system('call .python/Scripts/activate')
-    if is_mac():
-        os.system('source ./.python/bin/activate')
-    restart()
-
-if not in_venv():
-    create_venv()
+def is_linux():
+    return platform.system() == 'Linux'
 
 def InstallModule(package):
     if yes_or_no(f'Package {package} not found. Do you want to install Python Package {package}?'):
-        os.system(f"{os.getcwd()}/.python/{ 'Scripts' if is_windows() else 'bin' }/pip3 install {package}")
-        restart()
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+        try:
+            return importlib.import_module(package)
+        except ImportError:
+            print('Failed to import module after installation')
+            exit()
     else:
         print('Exiting')
         exit()
 
 try:
     import shutil
-except ImportError as e:
-    InstallModule('shutil')
+except ImportError:
+    shutil = InstallModule('shutil')
 try:
     import requests
-except ImportError as e:
-    InstallModule('requests')
+except ImportError:
+    requests = InstallModule('requests')
 try:
     from tqdm import tqdm
-except ImportError as e:
-    InstallModule('tqdm')
+except ImportError:
+    tqdm = InstallModule('tqdm')
     
 try:
     import zipfile
-except ImportError as e:
-    InstallModule('zipfile')
-if is_mac():
+except ImportError:
+    zipfile = InstallModule('zipfile')
+if is_mac() or is_linux():
     try:
         import tarfile
-    except ImportError as e:
-        InstallModule('tarfile')
+    except ImportError:
+        tarfile = InstallModule('tarfile')
 
 def DownloadPremake():
     if os.path.exists(f'{os.getcwd()}/premake'):
@@ -89,8 +67,14 @@ def DownloadPremake():
 
     print('Downloading Premake.')
 
-    url = f'https://github.com/premake/premake-core/releases/download/v5.0.0-beta2/premake-5.0.0-beta2-windows.zip' if is_windows() else f'https://github.com/premake/premake-core/releases/download/v5.0.0-beta3/premake-5.0.0-beta3-macosx.tar.gz'
-        
+    url = ""
+    if is_windows():
+        url = "https://github.com/premake/premake-core/releases/download/v5.0.0-beta5/premake-5.0.0-beta5-windows.zip"
+    elif is_mac():
+        url = "https://github.com/premake/premake-core/releases/download/v5.0.0-beta5/premake-5.0.0-beta5-macosx.tar.gz"
+    elif is_linux():
+        url = "https://github.com/premake/premake-core/releases/download/v5.0.0-beta5/premake-5.0.0-beta5-linux.tar.gz"
+    
     req = requests.get(url)
 
     filename = url.split('/')[-1]
@@ -105,11 +89,11 @@ def DownloadPremake():
     if is_windows():
         with zipfile.ZipFile(BytesIO(req.content)) as zf:
             zf.extract('premake5.exe', 'premake/')
-    if is_mac():
+    if is_mac() or is_linux():
         archive = tarfile.open(filename)
         archive.extract('premake5', 'premake/', filter='data')
         archive.close()
-        os.system(f'chmod +x {os.getcwd()}/premake/premake5')
+        os.chmod(f'{os.getcwd()}/premake/premake5', 0o755)
 
     print('Premake extracted Successfully')
 
@@ -221,6 +205,9 @@ def main():
         if is_mac():
             os.system(f'{os.getcwd()}/premake/premake5 xcode4')
             print('Generated XCode project files.')
+        if is_linux():
+            os.system(f'{os.getcwd()}/premake/premake5 gmake')
+            print('Generated GMake project files.')
         input('Press any key to continue....')
         return
     
@@ -239,6 +226,9 @@ def main():
     if is_mac():
         os.system(f'{os.getcwd()}/../premake/premake5 xcode4')
         print('Generated XCode project files.')
+    if is_linux():
+        os.system(f'{os.getcwd()}/../premake/premake5 gmake')
+        print('Generated GMake project files.')
     os.chdir(f'{os.getcwd()}/..')
 
     # os.remove(f'{projName}/premake5.lua')

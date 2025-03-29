@@ -3,9 +3,9 @@
 #include <string>
 #include "ThirdParty/ImGui/imgui.h"
 
-struct Font
+struct GuiFont
 {
-    Font(const std::string& inFile, float inSize) : fontSize(inSize)
+    GuiFont(const std::string& inFile, float inSize) : fontSize(inSize)
     {
         fontFile = std::move(inFile);
         const auto io = ImGui::GetIO();

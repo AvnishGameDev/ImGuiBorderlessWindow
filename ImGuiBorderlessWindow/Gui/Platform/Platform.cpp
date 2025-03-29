@@ -6,6 +6,9 @@
 #ifdef PLATFORM_MAC
 #include "Mac/MacPlatform.h"
 #endif
+#ifdef PLATFORM_LINUX
+#include "Linux/LinuxPlatform.h"
+#endif
 
 #if _DEBUG
 #include <iostream>
@@ -23,6 +26,9 @@ Platform* Platform::Get()
 #endif
 #ifdef PLATFORM_MAC
     m_CurrentPlatform = new MacPlatform();
+#endif
+#ifdef PLATFORM_LINUX
+    m_CurrentPlatform = new LinuxPlatform();
 #endif
 
 #if _DEBUG

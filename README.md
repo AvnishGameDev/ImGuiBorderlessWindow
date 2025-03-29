@@ -1,5 +1,5 @@
 # ImGuiBorderlessWindow
-ImGui Borderless Window made by AvnishGameDev. Works on Windows and MacOS.
+ImGui Borderless Window made by AvnishGameDev. Works on Windows, MacOS, and Linux.
 Based on [Dear ImGui](https://github.com/ocornut/imgui).
 
 ImGuiBorderlessWindow provides a easy ready-to-use template for a Borderless Windowed App, packed with multiple Themes, Fonts and easy Asset loading.
@@ -11,11 +11,25 @@ This is a perfect template for Apps like Mod Menus, Helper tools, Utility applic
 # Steps to setup
 1. Clone the repo using the following command or [download it as a zip](https://github.com/AvnishGameDev/ImGuiBorderlessWindow/archive/refs/heads/main.zip).\
 ```git clone https://github.com/AvnishGameDev/ImGuiBorderlessWindow```
-2. Run the `GenerateNewProject.bat` if you're on Windows or `GenerateNewProject.sh`  if you're on MacOS (You'll have to run ```chmod +x GenerateNewProject.sh``` before running it).
+
+2. Run the appropriate script for your platform:
+   - Windows: Run `GenerateNewProject.bat`
+   - MacOS: Run `GenerateNewProject.sh` (You'll need to run ```chmod +x GenerateNewProject.sh``` first)
+   - Linux: Run `GenerateNewProject.sh` (You'll need to run ```chmod +x GenerateNewProject.sh``` first)
+
 3. The Script should walk you through all the steps, you might be prompted to install missing Python packages, just type `y` whenever prompted.
-4. Enter your Project Name (No spaces).
-5. Your project should be generated and the script will tell you the location.
-6. You will find the project's solution files in the solution folder.
+
+4. For Linux users, you'll also need to install some additional dependencies:
+   ```bash
+   sudo apt-get update
+   sudo apt-get install libx11-dev libxext-dev libgl1-mesa-dev libglu1-mesa-dev libglfw3-dev
+   ```
+
+5. Enter your Project Name (No spaces).
+
+6. Your project should be generated and the script will tell you the location.
+
+7. You will find the project's solution files in the solution folder.
 
 # How to use Themes
 Themes are available in Themes.h, in order to activate a theme, just include ```Themes.h``` and call ```Theme::AnyThemeOfYourChoice()``` to activate that theme.

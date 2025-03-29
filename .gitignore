@@ -41,8 +41,21 @@ ImGuiBorderlessWindow/Gui/ThirdParty
 *.vcxproj
 *.filters
 *.user
+**/Makefile
+*.make
+Solution/**
 
-.python/*
+# Python virtual environment
+.python/
+venv/
+env/
+.env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+.python-version.local
 
 # ---- MacOS ----
 *.xcodeproj

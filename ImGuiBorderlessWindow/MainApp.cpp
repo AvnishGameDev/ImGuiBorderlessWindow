@@ -16,7 +16,7 @@ MainApp::MainApp() : App("ImGuiBorderlessWindow by AvnishGameDev", 400, 140) // 
     Theme::Comfy();
 
     // Loading Font from Assets folder
-    Gui::PushFont(Font(Platform::Get()->GetAssetPath("DroidSans.ttf"), 18.0f));
+    Gui::PushFont(GuiFont(Platform::Get()->GetAssetPath("DroidSans.ttf"), 18.0f));
 }
 
 void MainApp::Render()

@@ -2,7 +2,7 @@
 
 #pragma once
 
-struct Font;
+struct GuiFont;
 
 namespace Gui
 {
@@ -26,6 +26,6 @@ namespace Gui
     void EndImGuiRender() noexcept;
 
     // Loading Fonts
-    void PushFont(const Font& inFont) noexcept;
+    void PushFont(const GuiFont& inFont) noexcept;
     void PopFont();
 }
