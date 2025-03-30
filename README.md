@@ -58,3 +58,7 @@ Themes are available in Themes.h, in order to activate a theme, just include ```
 
 ## 8. Comfy (Default)
 ![image](https://user-images.githubusercontent.com/64523755/221153867-0232b47a-d7ad-4b27-9077-cdbff83e5d4a.png)
+
+##
+![ImGuiBorderlessWindow](https://github.com/user-attachments/assets/152cfb26-ae91-44aa-b246-8b4736078053)
+
