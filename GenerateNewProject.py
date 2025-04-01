@@ -223,13 +223,13 @@ def main():
     replace_in_file(f'{projName}/premake5.lua', 'ImGuiBorderlessWindow', projName)
 
     os.chdir(f'{os.getcwd()}/{projName}')
-    if is_windows():
-            os.system(f'{os.getcwd()}/../premake/premake5 vs2022')
-            print('Generated Visual Studio solution')
-    if is_mac():
+    if is_windows() or yes_or_no("Do you want to generate a Visual Studio solution?"):
+        os.system(f'{os.getcwd()}/../premake/premake5 vs2022')
+        print('Generated Visual Studio solution')
+    if is_mac() or yes_or_no("Do you want to generate a XCode project?"):
         os.system(f'{os.getcwd()}/../premake/premake5 xcode4')
         print('Generated XCode project files.')
-    if is_linux():
+    if is_linux() or yes_or_no("Do you want to generate a Linux makefile?"):
         os.system(f'{os.getcwd()}/../premake/premake5 gmake')
         print('Generated GMake project files.')
     os.chdir(f'{os.getcwd()}/..')
